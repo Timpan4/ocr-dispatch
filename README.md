@@ -1,9 +1,9 @@
 # ocr-dispatch
 
 Starts an [OpenCodeReview](https://github.com/alibaba/open-code-review) review
-for every pull request in the owner's repositories, including repositories
-that have no review workflow file. It receives the `pull_request` webhook of
-the `ocr-reviewer` GitHub App and dispatches the `ocr-dispatch.yml` workflow in
+for every pull request in the owner's repositories, with no review workflow
+file in them. It receives the `pull_request` webhook of the
+`timpan4-ocr-reviewer` GitHub App and dispatches the `ocr-dispatch.yml` workflow in
 `Timpan4/wall-e-infra`, which runs the review on wall-e through
 [`Timpan4/ocr-review`](https://github.com/Timpan4/ocr-review)'s
 `review-app.yml`.
@@ -19,7 +19,7 @@ the `ocr-reviewer` GitHub App and dispatches the `ocr-dispatch.yml` workflow in
    the base repository, in a repository the configured owner owns. Fork heads
    never reach the review runners. Kargo promotion branches
    (`kargo/promotion/...`) are skipped.
-4. It mints an installation token for the `ocr-dispatch` App, which has
+4. It mints an installation token for the `timpan4-ocr-dispatch` App, which has
    Actions write on the dispatch repository only, and calls
    `POST /repos/{owner}/{repo}/actions/workflows/{workflow}/dispatches` with
    the inputs `repository`, `pr_number`, and `head_sha`.
@@ -42,7 +42,7 @@ an old commit.
 | `DISPATCH_REPOSITORY` | Repository holding the review workflow, e.g. `Timpan4/wall-e-infra`. |
 | `DISPATCH_WORKFLOW` | Workflow file name. Default `ocr-dispatch.yml`. |
 | `DISPATCH_REF` | Branch the workflow runs from. Default `main`. |
-| `GITHUB_APP_CLIENT_ID` | The `ocr-dispatch` App's client ID (JWT issuer). |
+| `GITHUB_APP_CLIENT_ID` | The `timpan4-ocr-dispatch` App's client ID (JWT issuer). |
 | `GITHUB_APP_INSTALLATION_ID` | Its installation ID. |
 | `GITHUB_APP_PRIVATE_KEY_FILE` | Path to its PEM private key. |
 | `LISTEN_HOST`, `LISTEN_PORT` | Default `127.0.0.1` and `8080`. |
